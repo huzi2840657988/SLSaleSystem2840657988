@@ -1,0 +1,283 @@
+jQuery除了包含原生JS中的内置数据类型(built-in datatype)，还包括一些扩展的数据类型(virtual types)，如Selectors、Events等。
+
+ 
+
+1. String
+
+   String最常见，几乎任何一门高级编程语言和脚本语言中都支持，比如"Hello world!"即字符串。字符串的类型为string。比如
+
+   var typeOfStr = typeof "hello world";//typeOfStr为“string"
+
+   1.1 String内置方法
+
+     "hello".charAt(0) // "h" 
+
+     "hello".toUpperCase() // "HELLO" 
+
+     "Hello".toLowerCase() // "hello" 
+
+     "hello".replace(/e|o/g, "x") // "hxllx"
+
+     "1,2,3".split(",") // ["1", "2", "3"]
+
+   1.2 length属性：返回字符长度，比如"hello".length返回5
+
+   1.3 字符串转换为Boolean：
+
+      一个空字符串（""）默认为false，而一个非空字符串为true（比如"hello"）。
+
+ 
+
+2. Number
+
+   数字类型，比如3.1415926或者1、2、3...
+
+   typeof 3.1415926 返回的是"number"
+
+   2.1 Number转换为Boolean：
+
+      如果一个Number值为0，则默认为false，否则为true。
+
+   2.2 由于Number是采用双精度浮点数实现的，所以下面这种情况是合理的：
+
+      0.1 + 0.2 // 0.30000000000000004
+
+ 
+
+3. Math
+
+   下面的方法与Java中的Math类的静态方法类似。
+
+   Math.PI // 3.141592653589793 
+
+   Math.cos(Math.PI) // -1
+
+   3.1 将字符串化为数字：parseInt和parseFloat方法：
+
+       parseInt("123") = 123 (采用十进制转换) 
+
+       parseInt("010") = 8    (采用八进制转换) 
+
+       parseInt("0xCAFE") = 51966 (采用十六进制转换) 
+
+       parseInt("010", 10) = 10 (指定用10进制转换) 
+
+       parseInt("11", 2) = 3 (指定用二进制转换) 
+
+       parseFloat("10.10") = 10.1
+
+  3.2 数字到字符串
+
+      当将Number粘到（append）字符串后的时候，将得到字符串。
+
+       "" + 1 + 2; // "12"
+
+       "" + (1 + 2); // "3" 
+
+       "" + 0.0000001; // "1e-7"
+
+      或者用强制类型转换：
+
+      String(1) + String(2); //"12" 
+
+      String(1 + 2); //"3"
+
+ 
+
+4. NaN 和 Infinity
+
+   如果对一个非数字字符串调用parseInt方法，将返回NaN(Not a Number)，NaN常用来检测一个变量是否数字类型，如下：
+
+   isNaN(parseInt("hello", 10)) // true
+
+   Infinity表示数值无穷大或无穷小，比如1 / 0 // Infinity。
+
+   对NaN和Infinity调用typeof运算符都返回"numuber"。
+
+   另外 NaN==NaN 返回false，但是 Infinity==Infinity 返回true。
+
+ 
+
+5. Integer 和 Float
+
+   分为表示整型和浮点型。
+
+ http://www.cnblogs.com/roucheng/
+
+6. BOOLEAN
+
+   布尔类型，true或者false。
+
+ 
+
+7. OBJECT
+
+   JavaScript中的一切皆对象。对一个对象进行typeof运算返回 "object"。
+
+   var x = {}; 
+
+   var y = { name: "Pete", age: 15 };
+
+   对于上面的y对象，可以采用圆点获取属性值，比如y.name返回"Pete"，y.age返回15
+
+   7.1 Array Notation（数组访问方式访问对象）
+
+      var operations = { increase: "++", decrease: "--" } 
+
+       var operation = "increase"; 
+
+       operations[operation] // "++"; 
+
+       operations["multiply"] = "*"; // "*"
+
+       上面operations["multiply"]="*"; 往operations对象中添加了一个key-value对。
+
+  7.2 对象循环访问：for-in
+
+       var obj = { name: "Pete", age: 15}; 
+
+       for(key in obj) { 
+
+          alert("key is "+[key]+", value is "+obj[key]); 
+
+       }
+
+   7.3 任何对象不管有无属性和值，都默认为true
+
+   7.4 对象的Prototype属性
+
+         jQuery中用fn（Prototype的别名）动态为jQuery Instances添加对象（函数）
+
+          var form = $("#myform"); 
+
+          form.clearForm; // undefined 
+
+          form.fn.clearForm = function() {
+
+             return this.find(":input").each(function() { this.value = ""; }).end();
+
+          }; 
+
+          form.clearForm() // works for all instances of jQuery objects, because the new method was added
+
+ 
+
+8. OPTIONS
+
+  几乎所有的jQuery插件都提供了一个基于OPTIONS的API，OPTIONS是JS对象，意味着该对象以及它的属性都是optional（可选的）。允许customization。
+
+   比如采用Ajax方式提交表单，
+
+    $("#myform").ajaxForm();//默认采用Form的Action属性值作为Ajax-URL，Method值作为提交类型(GET/POST)
+
+     $("#myform").ajaxForm({ url: "mypage.php", type: "POST" });//则覆盖了提交到的URL和提交类型
+
+ 
+
+9. ARRAY
+
+   var arr = [1, 2, 3];
+
+   ARRAY是可变的lists。ARRAY也是对象。
+
+   读取或设置ARRAY中元素的值，采用这种方式：
+
+      var val = arr[0];//val为1
+
+      arr[2] = 4;//现在arr第三个元素为4
+
+   9.1 数组循环（遍历）
+
+      for (var i = 0; i < a.length; i++) { // Do something with a[i] }
+
+       但是当考虑性能时，则最好只读一次length属性，如下：
+
+       for (var i = 0, j = a.length; i < j; i++) { // Do something with a[i] }
+
+       jQuery提供了each方法遍历数组：
+
+        var x = [1, 2, 3]; 
+
+        $.each(x, 
+
+          function(index, value) { 
+
+              console.log("index", index, "value", value); 
+
+        });
+
+   9.2 对数组调用push方法意味着将一个元素添加到数组末尾，比如 x.push(5); 和 x.[x.length] = 5; 等价
+
+   9.3 数组其他内置方法：
+
+      var x = [0, 3, 1, 2]; 
+
+       x.reverse() // [2, 1, 3, 0] 
+
+       x.join(" – ") // "2 - 1 - 3 - 0" 
+
+       x.pop() // [2, 1, 3] 
+
+       x.unshift(-1) // [-1, 2, 1, 3] 
+
+       x.shift() // [2, 1, 3] 
+
+       x.sort() // [1, 2, 3] 
+
+       x.splice(1, 2) // 用于插入、删除或替换数组元素，这里为删除从index=1开始的2个元素
+
+  9.4 数组为对象，所以始终为true
+
+ 
+
+10. MAP
+
+   The map type is used by the AJAX function to hold the data of a request. This type could be a string, an array<form elements>, a jQuery object with form elements or an object with key/value pairs. In the last case, it is possible to assign multiple values to one key by assigning an array. As below:
+
+   {'key[]':['valuea','valueb']}
+
+ 
+
+11. FUNCTION:匿名和有名两种
+
+   11.1 Context、Call和Apply
+
+      In JavaScript, the variable "this" always refers to the current context. 
+
+     $(document).ready(function() { 
+
+          // this refers to window.document}); 
+
+          $("a").click(function() { // this refers to an anchor DOM element
+
+     });
+
+ 
+
+12. SELECTOR
+
+   There are lot of plugins that leverage jQuery's selectors in other ways. The validation plugin accepts a selector to specify a dependency, whether an input is required or not:
+
+    emailrules: { required: "#email:filled" }
+
+   This would make a checkbox with name "emailrules" required only if the user entered an email address in the email field, selected via its id, filtered via a custom selector ":filled" that the validation plugin provides.
+
+ 
+
+13. EVENT
+
+   DOM标准事件包括：blur, focus, load, resize, scroll, unload, beforeunload, click, dblclick, mousedown, mouseup, mousemove, mouseover, mouseout, mouseenter, mouseleave, change, select, submit, keydown, keypress, andkeyup
+
+ 
+
+14. JQUERY
+
+   JQUERY对象包含DOM元素的集合。比如$('p')即返回所有<p>...</p>
+
+   JQUERY对象行为类似数组，也有length属性，也可以通过index访问DOM元素集合中的某个。但是不是数组，不具备数组的某些方法，比如join()。
+
+   许多jQuery方法返回jQuery对象本身，所以可以采用链式调用：
+
+   $("p").css("color", "red").find(".special").css("color", "green");
+
+   但是如果你调用的方法会破坏jQuery对象，比如find()和filter()，则返回的不是原对象。要返回到原对象只需要再调用end()方法即可。

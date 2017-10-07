@@ -1,0 +1,31 @@
+1. 用户User(有roleid)在登录后菜单加载时需要根据角色role（id）的不同对应不同的权限（authority）功能id，
+不同的权限对应的功能（function）id不同，
+2.user(roleId)---->role(id/name)---->
+	autority(roleId--->functionId---->)---->function(id/name/url);
+
+需要的查询语句：
+select * from au_function where id in
+(select functionId from  au_authority where roleId=2);
+主菜单列表：
+select * from au_function where id in
+(select functionId from  au_authority 
+where parentId=0 and roleId=1);
+
+Mapper.xml
+select * from au_function where parentId=0 and id in
+			(select functionId from  au_authority 
+				where roleId=#{roleId});
+
+id
+子列表菜单（将主菜单的id作为子菜单的父id在function中再次查询对应的function功能。）：
+select * from au_function where parentId=1（主菜单的单项对应的id） and id in
+	(select functionId from  au_authority 
+		where roleId=1);
+
+Mapper.xml
+	select * from au_function where parentId=#{id} and id in
+			(select functionId from  au_authority 
+				where roleId=#{roleId});
+
+
+

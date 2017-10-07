@@ -1,0 +1,40 @@
+用户增加:
+1. 添加页面加载弹框  ;
+2. 自定义js文件应加载在jQuery文件之后;
+3. html文件由上到下加载;
+4.cardtTypeList 获取	(通过数据字典类) 
+	1. 数据字典设置
+			1.bean创建
+			2.dao,service,查询语句等编写;
+			3.在对应的service实现类添加注解@Service;
+	2. Controller层注解及 编写(UserController)
+			1 .添加数据字典的调用,查询cardtTypeList;
+			
+			
+			
+			
+			
+5.userlist.js==>添加信息验证;userlist.js中添加邮件格式检查;
+6.添加adduser输入框的清空,添加addusercancel 属性类(usertype的值置空)
+7.根据角色选择异步加载用户类型列表
+			1.对角色选择设置change事件;
+			2.ajax加载添加@ResponseBody注解
+			3.注解中的参数需要对应,对json对象转换
+			4.动态加载controller
+			
+
+
+
+8.后台addUser()编写；
+	1.首先判断当前对象模型是否为空； 获取session;传入对象模型；
+	2.如果为空则跳转至登录；
+	3.不为空：
+		1.截取idCardde 后6位set入password;password2一样；
+		2.set其余需要添加的参数
+		3.在js中对jsp影藏域设置change事件
+		
+		
+		
+	4.成功后重定向到userList页面；
+		
+

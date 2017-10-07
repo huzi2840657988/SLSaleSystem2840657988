@@ -1,0 +1,15 @@
+提醒======
+1.	for Each等标签使用中样式加载失败,
+	需要查看var等取值中是否多加了空格:
+	文件上传配置的id=“multipartResolver”其中的p小写；
+2.  检查nullpoint时先看对象再查面传值---再到语句检查
+3.  文件上传时路径的拼写需要注意标点符号及转义符；
+4.  当前日期格式在js中的标准格式转换；使用new Date().local
+5.  ajax数据传送时，json格式的可以使用（对象.属性） 的方式获取，使用json时控制层必须加@Responsebody注解
+	@RequestMapping 中produces = {"text/html;charset=UTF-8"}传送方法同样不可缺少！！！
+6.  public List<Function> getFunctionListByIn(@Param(value="sqlInString") String sqlInString);	
+	    使用In查询时，在对应的service和dao层的interface中必须添加@Param(value="sqlInString")，
+	    否则error：org.apache.ibatis.reflection.ReflectionException:
+     There is no getter for property named 。。。。。。错
+    
+ 7.   分割字符串倒包：import org.apache.commons.lang.StringUtils;

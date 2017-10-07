@@ -1,0 +1,12 @@
+注销功能：
+1. 前台添加连接的href跳转路径；
+2. LogOut方法编写：
+   01.removeAtrribute(conatants_user_session);
+   02.session.invalidate()
+   03.置空当前用户（null）
+   04.页面跳转
+
+
+
+
+

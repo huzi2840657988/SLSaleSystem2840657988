@@ -1,0 +1,27 @@
+
+查询查询过程思维：
+
+1个user对应1个roldId---->
+查找authority中的roleId(1个roleId对应多个functionId<List>)---->
+查找Function表，根据id和查询出对应的--->parentId集合<List>
+
+
+权限菜单列表显示：
+1.获取session中的登陆的对象USer的信息中的roleId;
+
+2.菜单类的建立：
+属性：	主菜单功能:Function
+		子菜单列表：list<Function>
+		生成对应的set/GET方法；
+3.菜单列表的获取：
+	01.获取当前的用户对像（判断对象是否为空）
+	02.不为空时将菜单信息放入model对象
+		01.建立hashMap<String ,Object>中放入用户；
+		02.根据当前用户User获取菜单列表对象（建立获取菜单的函数）：
+	03.根据roleId获取菜单信息方法：
+		0.1建立菜单MenuList的ArrayList<Menu>数列：
+		0.2建立authority 对象;
+		0.3根据roleId----》
+		获取对应的用户的权限----》
+		获取对应的权限的功能----》查询语句
+		

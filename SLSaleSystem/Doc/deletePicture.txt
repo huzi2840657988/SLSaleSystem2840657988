@@ -1,0 +1,30 @@
+通过远程 HTTP POST 请求载入信息。
+url,[data],[callback],[type]
+
+url:发送请求地址。
+data:待发送 Key/value 参数。
+callback:发送成功时回调函数。
+type:返回内容格式，xml, html, script, json, text, _default。
+这是一个简单的 POST 请求功能以取代复杂 $.ajax 。
+请求成功时可调用回调函数。如果需要在出错时执行函数，请使用 $.ajax。
+eg:
+$.post("test.php", { name: "John", time: "2pm" },
+   function(data){
+     process(data);
+   }, "xml");
+
+图片删除:
+
+1.参数设置:
+	1.传入删除标记参数id,识别是删除添加/修改数据库的图片;
+	2.span标签设置:删除或添加(显示路径);
+	3.上传按钮id:btn的状态;
+	4.当前对像obj(this);
+	5.文件路径:本地或数据库路径;
+	6.文件名存放操作;
+	7.文件Id
+
+2.js:
+	
+	$.post(url,[{"key":value,"key":value}],[function(){}],[type])
+

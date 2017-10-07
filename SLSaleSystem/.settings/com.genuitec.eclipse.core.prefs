@@ -1,0 +1,4 @@
+#Wed Sep 06 13:09:20 CST 2017
+eclipse.preferences.version=1
+validator.Checked=WebRoot/WEB-INF/pages/backend/userlist.jsp,WebRoot/statics
+validator.Unchecked=

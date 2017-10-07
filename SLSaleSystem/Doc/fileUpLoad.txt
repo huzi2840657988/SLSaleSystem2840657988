@@ -1,0 +1,48 @@
+
+ajax异步上传图片：（26源码修改）
+
+1.	页面不需要显示但是需要获取后存在数据库的信息可以使用影藏表单域获取；
+2.	鼠标点击时调用后台的操作方法；
+
+
+$.ajax({
+	url:
+	secureuri:false,
+	fileElementId:
+	dataType:'json',
+	success:function(data){
+		data = data.replace(/(^\s*)|(|s*$)/g,"");
+	data判断：data==1,文件过大；
+	if()data==1; 
+		alert:提示： 
+			$("#uniform-"+t1+" span:first").html("无文件");
+		获取input标签：(标签属性选择器)
+		$("input[name!='basketball']")
+		$("input[name-'"+t1+"']").change(function(){
+			var fn =$("input[name-'"+t1+"']").val();
+			//IE兼容性处理
+			if($.browser.mise){
+				//截取路径
+				fn=fn.subString(fn.lastIndexOf("\\")+1);
+			}
+		$("#uniform-"+t1+" span:first").html(fn);
+	else if(data == "2"){
+		//格式不正确：2---提示，同上
+		
+	
+	}else{
+		//
+	
+	}
+	
+	});
+	
+	},
+	error {
+	
+	
+	}
+	
+	
+	
+})
